@@ -1,7 +1,8 @@
 using System.Text;
 class Renderer
 {
-    char lastPressed = 'S';
+    char lastPressed = 'W';
+    Game.Direction direction;
     Game.Field field;
     Game game;
     public Renderer(Game game)
@@ -27,37 +28,35 @@ class Renderer
     public void Tick()
     {
         DrawFrame();
-        game.Tick(GetDirection());
+        GetDirection();
+        game.Tick(direction);
     }
-    Game.Direction GetDirection()
+    void GetDirection()
     {
         var pressed = lastPressed;
         if (Console.KeyAvailable == true)
         {
-            pressed = Console.ReadKey().Key.ToString().First();
-            if ("WASD".Contains(pressed))
+            var key = Console.ReadKey().Key.ToString().First();
+            if ("WASD".Contains(key))
             {
-                pressed = lastPressed;
+                pressed = key;
             }
         }
-        switch (pressed)
+        if (pressed == 'A' && lastPressed != 'D')
         {
-            case 'W':
-                {
-                    return Game.Direction.Up;
-                }
-            case 'A':
-                {
-                    return Game.Direction.Left;
-                }
-            case 'S':
-                {
-                    return Game.Direction.Down;
-                }
-            default:
-                {
-                    return Game.Direction.Right;
-                }
+            direction = Game.Direction.Left;
+        }
+        if (pressed == 'W' && lastPressed != 'S')
+        {
+            direction = Game.Direction.Up;
+        }
+        if (pressed == 'D' && lastPressed != 'A')
+        {
+            direction = Game.Direction.Right;
+        }
+        if (pressed == 'S' && lastPressed != 'W')
+        {
+            direction = Game.Direction.Down;
         }
     }
     static string GetSymbol(Game.Field.FieldObject fieldObject)
