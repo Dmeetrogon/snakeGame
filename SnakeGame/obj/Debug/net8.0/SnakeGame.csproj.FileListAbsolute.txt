@@ -12,3 +12,4 @@
 /home/dmeetrogon/visual studio projects/SnakeGame/obj/Debug/net8.0/SnakeGame.pdb
 /home/dmeetrogon/visual studio projects/SnakeGame/obj/Debug/net8.0/SnakeGame.genruntimeconfig.cache
 /home/dmeetrogon/visual studio projects/SnakeGame/obj/Debug/net8.0/ref/SnakeGame.dll
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Debug/net8.0/SnakeGame.sourcelink.json

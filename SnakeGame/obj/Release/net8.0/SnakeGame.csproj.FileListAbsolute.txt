@@ -1,0 +1,15 @@
+/home/dmeetrogon/visual studio projects/SnakeGame/bin/Release/net8.0/SnakeGame
+/home/dmeetrogon/visual studio projects/SnakeGame/bin/Release/net8.0/SnakeGame.deps.json
+/home/dmeetrogon/visual studio projects/SnakeGame/bin/Release/net8.0/SnakeGame.runtimeconfig.json
+/home/dmeetrogon/visual studio projects/SnakeGame/bin/Release/net8.0/SnakeGame.dll
+/home/dmeetrogon/visual studio projects/SnakeGame/bin/Release/net8.0/SnakeGame.pdb
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/SnakeGame.GeneratedMSBuildEditorConfig.editorconfig
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/SnakeGame.AssemblyInfoInputs.cache
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/SnakeGame.AssemblyInfo.cs
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/SnakeGame.csproj.CoreCompileInputs.cache
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/SnakeGame.sourcelink.json
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/SnakeGame.dll
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/refint/SnakeGame.dll
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/SnakeGame.pdb
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/SnakeGame.genruntimeconfig.cache
+/home/dmeetrogon/visual studio projects/SnakeGame/obj/Release/net8.0/ref/SnakeGame.dll
