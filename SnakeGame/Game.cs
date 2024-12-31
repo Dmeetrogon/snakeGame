@@ -15,13 +15,15 @@ class Game
         int snakeX = xSize / 2;//змейка появляется в центре
         int snakeY = ySize / 2;
         snake = new(new Point(snakeX, snakeY), 3);
-        field = new Field(snake, xSize, ySize);
+        field = new Field(snake, xSize, ySize); 
+        field.GenerateFood();
     }
     public void Tick(Direction direction)
     {
         snake.Move(direction, field.Food);
         if (!IsGameContinuing())
         {
+            Console.Clear();
             Console.WriteLine("Игра окончена!");
             Environment.Exit(0);
         }
@@ -112,9 +114,11 @@ class Game
         public enum FieldObject
         {
             SnakeBody,
+            SnakeHead,
             Field,
             Food,
-            Undefined
+            Undefined,
+            Wall
         }
     }
 }

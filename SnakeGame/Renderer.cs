@@ -1,8 +1,7 @@
 using System.Text;
 class Renderer
 {
-    char lastPressed = 'W';
-    Game.Direction direction;
+    Game.Direction currentDirection = Game.Direction.Up;
     Game.Field field;
     Game game;
     public Renderer(Game game)
@@ -12,51 +11,70 @@ class Renderer
     }
     void DrawFrame()
     {
-        StringBuilder str = new(string.Empty);
+        Console.SetCursorPosition(0, 0);
         for (int y = 0; y < field.YSize; y++)
         {
             for (int x = 0; x < field.XSize; x++)
             {
                 Game.Field.FieldObject fieldObject = field.WhatsInThePoint(new Point(x, y));
-                str.Append(GetSymbol(fieldObject));
+                Console.Write(GetSymbol(fieldObject));
             }
-            str.Append('\n');
+            Console.WriteLine();
         }
-        Console.SetCursorPosition(0, 0);
-        Console.WriteLine(str);
+    }
+    public void GameTick(object? stateInfo)
+    {
+        game.Tick(currentDirection);
     }
     public void Tick()
     {
         DrawFrame();
         GetDirection();
-        game.Tick(direction);
     }
-    void GetDirection()
+    public void GetDirection()
     {
-        var pressed = lastPressed;
         if (Console.KeyAvailable == true)
         {
-            var key = Console.ReadKey().Key.ToString().First();
-            if ("WASD".Contains(key))
+            var key = Console.ReadKey().Key.ToString();
+            switch (key)
             {
-                pressed = key;
+                case "W":
+                    {
+                        if (currentDirection == Game.Direction.Down)
+                        {
+                            return;
+                        }
+                        currentDirection = Game.Direction.Up;
+                        return;
+                    }
+                case "A":
+                    {
+                        if (currentDirection == Game.Direction.Right)
+                        {
+                            return;
+                        }
+                        currentDirection = Game.Direction.Left;
+                        return;
+                    }
+                case "S":
+                    {
+                        if (currentDirection == Game.Direction.Up)
+                        {
+                            return;
+                        }
+                        currentDirection = Game.Direction.Down;
+                        return;
+                    }
+                case "D":
+                    {
+                        if (currentDirection == Game.Direction.Left)
+                        {
+                            return;
+                        }
+                        currentDirection = Game.Direction.Right;
+                        return;
+                    }
             }
-        }
-        if (pressed == 'A' && lastPressed != 'D')
-        {
-            direction = Game.Direction.Left;
-        }
-        if (pressed == 'W' && lastPressed != 'S')
-        {
-            direction = Game.Direction.Up;
-        }
-        if (pressed == 'D' && lastPressed != 'A')
-        {
-            direction = Game.Direction.Right;
-        }
-        if (pressed == 'S' && lastPressed != 'W')
-        {
-            direction = Game.Direction.Down;
         }
     }
     static string GetSymbol(Game.Field.FieldObject fieldObject)
@@ -85,15 +103,15 @@ class Renderer
     {
         public static string Body
         {
-            get => "■";
+            get => "*";
         }
         public static string FieldFiller
         {
-            get => "□";
+            get => " ";
         }
         public static string Food
         {
-            get => "F";
+            get => "@";
         }
     }
 }
