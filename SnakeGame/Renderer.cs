@@ -16,7 +16,7 @@ class Renderer
         {
             for (int x = 0; x <= field.XSize; x++)
             {
-                Game.Field.FieldObject fieldObject = field.WhatsInThePoint(new Point(x, y));
+                Game.Field.FieldObject fieldObject = field.WhatsInThePoint(new Point(x, y)).FirstOrDefault();
                 Console.Write(GetSymbol(fieldObject));
             }
             Console.WriteLine();

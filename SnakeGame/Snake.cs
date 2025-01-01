@@ -2,6 +2,8 @@ class Snake
 {
     List<Point> body = [];
     bool hasEaten = false;
+    public delegate void SnakeEatHandler();
+    public event SnakeEatHandler Process;
     public List<Point> Body
     {
         get => body;
@@ -12,56 +14,62 @@ class Snake
         get => hasEaten;
         set => hasEaten = value;
     }
-    public Snake(Point head, int size)
+    public Snake(Point head, int size, SnakeEatHandler handler)
     {
         body.Add(head);
         for (int i = 1; i < size; i++)
         {
             body.Add(new Point(head.X, head.Y + i));
         }
+        Process = handler;
     }
     public void Move(Game.Direction direction, Point? food)
     {
-
         Point tail = body.Last();//на случай, если змейка поест
+        Point head = body.First();
+        Point newHead;
         switch (direction)
         {
             case Game.Direction.Up:
                 {
-                    body[0].Y--;//ордината уменьшается при движении вверх, потому что точка начала отсчета находится в левом верхнем углу(0;0), а поле является прямоугольником
+                    newHead = new Point(head.X, head.Y - 1); ;//ордината уменьшается при движении вверх, потому что точка начала отсчета находится в левом верхнем углу(0;0), а поле является прямоугольником
                     break;
                 }
             case Game.Direction.Left:
                 {
-                    body[0].X--;
+                    newHead = new Point(head.X - 1, head.Y);
                     break;
                 }
             case Game.Direction.Down:
                 {
-                    body[0].Y++;//ордината увеличивается при движении вниз, потому что точка начала отсчета находится в левом верхнем углу(0;0), а поле является прямоугольником
+                    newHead = new Point(head.X, head.Y + 1); ;//ордината увеличивается при движении вниз, потому что точка начала отсчета находится в левом верхнем углу(0;0), а поле является прямоугольником
                     break;
                 }
             case Game.Direction.Right:
                 {
-                    body[0].X++;
+                    newHead = new Point(head.X + 1, head.Y);
                     break;
                 }
+            default:
+                {
+                    throw new Exception("Invalid direction");
+                }
         }
-        for (int i = 1; i < body.Count; i++)
-        {
-            body[i] = body[i - 1];
-        }
+        body.Insert(0, newHead);
+        body.Remove(tail);
         if (body.First() == food)
         {
             Eat();
         }
         if (hasEaten == true)
         {
-            body.Append(tail);
+            body.Add(tail);
+            hasEaten = false;
         }
     }
     public void Eat()
     {
+        Process.Invoke();
         hasEaten = true;
     }
 

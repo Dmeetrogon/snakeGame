@@ -14,35 +14,35 @@ class Game
         this.ySize = ySize;
         int snakeX = xSize / 2;//змейка появляется в центре
         int snakeY = ySize / 2;
-        snake = new(new Point(snakeX, snakeY), 3);
-        field = new Field(snake, xSize, ySize); 
+        field = new Field(xSize, ySize);
+        snake = new(new Point(snakeX, snakeY), 3, field.GenerateFood);
+        field.AddSnake(snake);
         field.GenerateFood();
     }
     public void Tick(Direction direction)
     {
         snake.Move(direction, field.Food);
-        if (!IsGameContinuing())
+        if (IsDead())
         {
             Console.Clear();
             Console.WriteLine("Игра окончена!");
             Environment.Exit(0);
         }
     }
-    bool IsGameContinuing()
+    bool IsDead()
     {
-        var head = snake.Body.First();
-        var headL = new List<Point>() { head };
-        if (snake.Body.Except(headL).Contains(snake.Body.First()))//если змейка в себя врезалась. TODO: убрать эту страшную херотень, а то она меня пугает. Она непонятная ничерта
+        Point head = snake.Body[0];
+        for (int i = 1; i < snake.Body.Count; i++)
         {
-            Console.WriteLine("Бошка");
-            return false;
+            if (snake.Body[i] == head)
+                return true;
         }
-        if (field.WhatsInThePoint(head) == Field.FieldObject.Wall)// если змеиная черепушка все еще в пределах поля
+        if (field.WhatsInThePoint(head).Contains(Field.FieldObject.Wall))
         {
-            Console.WriteLine("Стенка");
-            return false;
+            return true;
         }
-        return true;
+        return false;
+
     }
 
     public enum Direction
@@ -53,9 +53,9 @@ class Game
     {
         get => field;
     }
-    public class Field(Snake snake, int xSize, int ySize)
+    public class Field(int xSize, int ySize)
     {
-        Snake snake = snake;
+        Snake? snake;
         Point? food = default;
         int xSize = xSize;
         int ySize = ySize;
@@ -72,7 +72,7 @@ class Game
         }
         public Snake Snake
         {
-            get => snake;
+            get => snake!;
             set => snake = value;
         }
         public Point? Food
@@ -90,30 +90,36 @@ class Game
                     field.Add(new Point(x, y));
                 }
             }
-            List<Point> acessiblePoints = (from p in field.Except(snake.Body)
+            List<Point> acessiblePoints = (from p in field.Except(snake!.Body)
                                            select p).ToList();
             Random random = new();
             food = acessiblePoints[random.Next(0, acessiblePoints.Count)];
         }
-        public FieldObject WhatsInThePoint(Point point)
+        public void AddSnake(Snake snake)
         {
+            Snake = snake;
+        }
+        public List<FieldObject> WhatsInThePoint(Point point)
+        {
+            List<FieldObject> pointContains = [];
             if (snake.Body.Contains(point))
             {
-                return FieldObject.SnakeBody;
+                pointContains.Add(FieldObject.SnakeBody);
             }
-            if (food == point)
+            if (food! == point)
             {
-                return FieldObject.Food;
+                pointContains.Add(FieldObject.Food);
             }
-            if(point.X == 0 || point.Y == 0 || point.X == xSize || point.Y == ySize)
+            if (point.X == 0 || point.Y == 0 || point.X == xSize || point.Y == ySize)
             {
-                return FieldObject.Wall;
+                pointContains.Add(FieldObject.Wall);
             }
             if (point.X >= 0 && point.Y >= 0 && point.X <= xSize && point.Y <= ySize)//Принадлежит ли точка полю. точка должна быть положительной и не вылезать за рамки поля
             {
-                return FieldObject.Field;
+                pointContains.Add(FieldObject.Field);
             }
-            return FieldObject.Undefined;
+            pointContains.Add(FieldObject.Undefined);
+            return pointContains;
         }
         public enum FieldObject
         {
