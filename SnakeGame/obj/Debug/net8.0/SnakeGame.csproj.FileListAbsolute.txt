@@ -13,3 +13,18 @@
 /home/dmeetrogon/visual studio projects/SnakeGame/obj/Debug/net8.0/SnakeGame.genruntimeconfig.cache
 /home/dmeetrogon/visual studio projects/SnakeGame/obj/Debug/net8.0/ref/SnakeGame.dll
 /home/dmeetrogon/visual studio projects/SnakeGame/obj/Debug/net8.0/SnakeGame.sourcelink.json
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\bin\Debug\net8.0\SnakeGame.exe
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\bin\Debug\net8.0\SnakeGame.deps.json
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\bin\Debug\net8.0\SnakeGame.runtimeconfig.json
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\bin\Debug\net8.0\SnakeGame.dll
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\bin\Debug\net8.0\SnakeGame.pdb
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\SnakeGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\SnakeGame.AssemblyInfoInputs.cache
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\SnakeGame.AssemblyInfo.cs
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\SnakeGame.csproj.CoreCompileInputs.cache
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\SnakeGame.sourcelink.json
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\SnakeGame.dll
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\refint\SnakeGame.dll
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\SnakeGame.pdb
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\SnakeGame.genruntimeconfig.cache
+C:\Users\dmeet\source\repos\Dmeetrogon\snakeGame\SnakeGame\obj\Debug\net8.0\ref\SnakeGame.dll

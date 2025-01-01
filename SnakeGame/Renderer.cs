@@ -12,9 +12,9 @@ class Renderer
     void DrawFrame()
     {
         Console.SetCursorPosition(0, 0);
-        for (int y = 0; y < field.YSize; y++)
+        for (int y = 0; y <= field.YSize; y++)
         {
-            for (int x = 0; x < field.XSize; x++)
+            for (int x = 0; x <= field.XSize; x++)
             {
                 Game.Field.FieldObject fieldObject = field.WhatsInThePoint(new Point(x, y));
                 Console.Write(GetSymbol(fieldObject));
@@ -26,7 +26,7 @@ class Renderer
     {
         game.Tick(currentDirection);
     }
-    public void Tick()
+    public void RenderFrame()
     {
         DrawFrame();
         GetDirection();
@@ -93,6 +93,10 @@ class Renderer
                 {
                     return Config.Food;
                 }
+            case Game.Field.FieldObject.Wall:
+                {
+                    return Config.Wall;
+                }
             default:
                 {
                     throw new Exception("Requested undefined point of the field!");
@@ -112,6 +116,10 @@ class Renderer
         public static string Food
         {
             get => "@";
+        }
+        public static string Wall
+        {
+            get => "#";
         }
     }
 }

@@ -10,8 +10,8 @@ class Game
     public Game(int xSize, int ySize)
     {
 
-        this.xSize = xSize - 1;//-1 потому что отсчет начинается с 0. чтобы к примеру поле размером в 7 клеток, было размером в 7 клеток, а не в 8 #(0,1,2,3,4,5,6,7) = 8
-        this.ySize = ySize - 1;
+        this.xSize = xSize;//-1 потому что отсчет начинается с 0. чтобы к примеру поле размером в 7 клеток, было размером в 7 клеток, а не в 8 #(0,1,2,3,4,5,6,7) = 8
+        this.ySize = ySize;
         int snakeX = xSize / 2;//змейка появляется в центре
         int snakeY = ySize / 2;
         snake = new(new Point(snakeX, snakeY), 3);
@@ -37,7 +37,7 @@ class Game
             Console.WriteLine("Бошка");
             return false;
         }
-        if (head.X < 0 || head.X > xSize || head.Y < 0 || head.Y > ySize)// если змеиная черепушка все еще в пределах поля
+        if (field.WhatsInThePoint(head) == Field.FieldObject.Wall)// если змеиная черепушка все еще в пределах поля
         {
             Console.WriteLine("Стенка");
             return false;
@@ -83,9 +83,9 @@ class Game
         public void GenerateFood()
         {
             List<Point> field = [];
-            for (int x = 0; x < xSize; x++)
+            for (int x = 1; x < xSize; x++)
             {
-                for (int y = 0; y < ySize; y++)
+                for (int y = 1; y < ySize; y++)
                 {
                     field.Add(new Point(x, y));
                 }
@@ -105,6 +105,10 @@ class Game
             {
                 return FieldObject.Food;
             }
+            if(point.X == 0 || point.Y == 0 || point.X == xSize || point.Y == ySize)
+            {
+                return FieldObject.Wall;
+            }
             if (point.X >= 0 && point.Y >= 0 && point.X <= xSize && point.Y <= ySize)//Принадлежит ли точка полю. точка должна быть положительной и не вылезать за рамки поля
             {
                 return FieldObject.Field;
@@ -114,7 +118,6 @@ class Game
         public enum FieldObject
         {
             SnakeBody,
-            SnakeHead,
             Field,
             Food,
             Undefined,
