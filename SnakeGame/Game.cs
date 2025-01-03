@@ -25,7 +25,7 @@ class Game
         if (IsDead())
         {
             Console.Clear();
-            Console.WriteLine("Игра окончена!");
+            Console.WriteLine($"Игра окончена!Ваш счет - {snake.Body.Count}");
             Environment.Exit(0);
         }
     }
